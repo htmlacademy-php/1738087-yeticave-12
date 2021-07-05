@@ -61,7 +61,6 @@ $categories = ['Доски и лыжи', 'Крепления', 'Ботинки',
 				<h2 class="promo__title">Нужен стафф для катки?</h2>
 				<p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
 				<ul class="promo__list">
-
 					<?php foreach ($categories as $key => $val) : ?>
 						<li class="promo__item promo__item--boards">
 							<a class="promo__link" href="pages/all-lots.html"><?= $val ?></a>
@@ -76,7 +75,7 @@ $categories = ['Доски и лыжи', 'Крепления', 'Ботинки',
 				<ul class="lots__list">
 					<?php
 					$product_inf = [
-						0 =>	['name' => '2014 Rossignol District Snowboard', 'categorie' => 'Доски и лыжи', 'Cost' => '10999', 'URL' => ' img/lot-1.jpg'],
+						0 =>	['name' => '2014 Rossignol District Snowboard', 'categorie' => 'Доски и лыжи', 'Cost' => '1000', 'URL' => ' img/lot-1.jpg'],
 						1 => ['name' => 'DC Ply Mens 2016/2017 Snowboard', 'categorie' => 'Доски и лыжи', 'Cost' => '159999', 'URL' => ' img/lot-2.jpg'],
 						2 => ['name' => 'Крепления Union Contact Pro 2015 года размер L/XL', 'categorie' => 'Крепления', 'Cost' => '8000', 'URL' => ' img/lot-3.jpg'],
 						3 => ['name' => 'Ботинки для сноуборда DC Mutiny Charocal', 'categorie' => 'Ботинки', 'Cost' => '10999', 'URL' => ' img/lot-4.jpg'],
@@ -84,7 +83,8 @@ $categories = ['Доски и лыжи', 'Крепления', 'Ботинки',
 						5 => ['name' => 'Маска Oakley Canopy', 'categorie' => ' Разное', 'Cost' => '5400', 'URL' => ' img/lot-6.jpg'],
 					];
 					?>
-					<?php foreach ($product_inf as $key => $val) : ?>
+					<?php
+					foreach ($product_inf as $key => $val) : ?>
 						<li class="lots__item lot">
 							<div class="lot__image">
 								<img src="<?= $val['URL'] ?>" width="350" height="260" alt="">
@@ -95,7 +95,19 @@ $categories = ['Доски и лыжи', 'Крепления', 'Ботинки',
 								<div class="lot__state">
 									<div class="lot__rate">
 										<span class="lot__amount">Стартовая цена</span>
-										<span class="lot__cost"><?= $val['Cost']  ?><b class="rub">р</b></span>
+										<?php if ($val['Cost'] <= 1000) : ?>
+											<span class="lot__cost">
+												<?= $val['Cost'] . ' ' . '₽' ?>
+											</span>
+										<?php elseif ($val['Cost'] > 1000) : ?>
+											<span class="lot__cost">
+												<?=
+												$number_format_baldesh	= number_format($val['Cost'], 0, '', ' ') . ' ' . '₽';
+
+												?>
+											</span>
+										<?php endif; ?>
+
 									</div>
 									<div class="lot__timer timer">
 										12:23
